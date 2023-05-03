@@ -5,17 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "lint": "npx eslint"
+    "lint": "eslint src"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-redux": "^7.1.25",
+    "firebase": "^9.21.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.9.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.8",
-    "react-redux": "^8.0.5"
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.1"
   },
   "devDependencies": {
     "@redux-devtools/core": "^3.13.1",
@@ -32,14 +36,14 @@
     "eslint-config-prettier": "^8.7.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "jsdom": "^21.1.0",
     "husky": "^7.0.4",
+    "jsdom": "^21.1.0",
     "lint-staged": "^12.4.1",
     "prettier": "^2.8.4",
+    "sass": "^1.62.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0",
     "vitest": "^0.29.2"

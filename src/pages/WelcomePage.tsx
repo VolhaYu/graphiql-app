@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const WelcomePage = () => {
+function WelcomePage() {
   return <h1>Welcome Page</h1>;
 }
 
