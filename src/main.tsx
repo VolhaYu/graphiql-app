@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import App from './App';
 import './index.scss';
 import { setupStore } from './store/store';
+import './firebase';
 
 const store = setupStore();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
       <App />
-    </React.StrictMode>
-  </Provider>
+    </Provider>
+  </React.StrictMode>
 );
