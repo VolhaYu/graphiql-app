@@ -7,7 +7,7 @@ interface Button {
 
 function MyButton({ children, onClick }: Button) {
   return (
-    <button type="submit" className="form__btn">
+    <button type="submit" className="form__btn" onClick={onClick}>
       {children}
     </button>
   );
