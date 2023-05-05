@@ -1,10 +1,11 @@
+/* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface queryValue {
+interface IResponseValue {
   value: string | undefined;
 }
 
-const initialState: queryValue = {
+const initialState: IResponseValue = {
   value: `query allCharacters {
     characters {
       results {

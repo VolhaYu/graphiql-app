@@ -11,3 +11,5 @@ export const makeRequest = async (query: string | undefined) => {
     .then((res) => res.json())
     .then((res) => JSON.stringify(res, null, 2));
 };
+
+export default makeRequest;
