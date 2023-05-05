@@ -1,7 +1,14 @@
-import React from "react";
+import React from 'react';
+import Form from '../components/formComponents/form';
+import '../components/formComponents/form.scss';
 
-const UserAuth = () => {
-  return <h1>User Auth</h1>;
+function UserAuth() {
+  return (
+    <>
+      <h1 className="h1-form">Sign Up</h1>
+      <Form />
+    </>
+  );
 }
 
 export default UserAuth;

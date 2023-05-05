@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const GraphiQlPage = () => {
+function GraphiQlPage() {
   return <h1>GraphiQl Page</h1>;
 }
 
