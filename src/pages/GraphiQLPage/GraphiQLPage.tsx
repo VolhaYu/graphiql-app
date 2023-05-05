@@ -3,13 +3,13 @@ import './GraphiQLPage.scss';
 import GraphQlEditor from '../../components/GraphQLEditor/GraphQLEditor';
 import GraphQLResponse from '../../components/GraphQLResponse/GraphQLResponse';
 
-const GraphiQlPage = () => {
+function GraphiQlPage() {
   return (
     <div className="graphiql">
       <GraphQlEditor />
       <GraphQLResponse />
     </div>
   );
-};
+}
 
 export default GraphiQlPage;
