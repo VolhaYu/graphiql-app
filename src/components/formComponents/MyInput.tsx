@@ -10,7 +10,7 @@ interface Input {
 }
 function MyInput({ label, type, placeholder, value, onChange }: Input) {
   return (
-    <label>
+    <label className="label">
       {' '}
       {label}
       <input
