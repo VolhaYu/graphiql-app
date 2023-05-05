@@ -14,6 +14,6 @@ function PagesRouter() {
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-};
+}
 
 export default PagesRouter;

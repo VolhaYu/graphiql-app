@@ -26,7 +26,10 @@ function GraphQLEditor() {
     <div className="graphiql_editor">
       <div className="graphiql_editor__header">
         <p>Operation:</p>
-        <button onClick={async () => dispatch(setResponseValue(await makeRequest(queryValue)))}>
+        <button
+          type="button"
+          onClick={async () => dispatch(setResponseValue(await makeRequest(queryValue)))}
+        >
           <SendButton />
         </button>
       </div>

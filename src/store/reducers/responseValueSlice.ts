@@ -1,10 +1,11 @@
+/* eslint-disable no-param-reassign */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-interface responseValue {
+interface IResponseValue {
   value: string | undefined;
 }
 
-const initialState: responseValue = {
+const initialState: IResponseValue = {
   value: ``,
 };
 
