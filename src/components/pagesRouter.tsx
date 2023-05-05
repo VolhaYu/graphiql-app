@@ -5,7 +5,7 @@ import NotFound from '../pages/NotFound';
 import WelcomePage from '../pages/WelcomePage';
 import GraphiQlPage from '../pages/GraphiQLPage/GraphiQLPage';
 
-const PagesRouter = () => {
+function PagesRouter() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
