@@ -48,8 +48,8 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
 
   const handlerSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    changeEmail();
-    changePassword();
+    // changeEmail();
+    // changePassword();
   };
   return (
     <form className="form" onSubmit={handlerSubmit}>
