@@ -2,34 +2,23 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface AuthState {
-  email: string | null;
-  token: string | null;
-  id: string | null;
   emailErr: string | null;
   passErr: string | null;
+  changeSigninSignUp: boolean;
 }
 
 const initialState: AuthState = {
-  email: null,
-  token: null,
-  id: null,
   emailErr: null,
   passErr: null,
+  changeSigninSignUp: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUser(state, action) {
-      state.email = action.payload.email;
-      state.token = action.payload.token;
-      state.id = action.payload.id;
-    },
-    removeUser(state) {
-      state.email = null;
-      state.token = null;
-      state.id = null;
+    changePageAuth(state, action) {
+      state.changeSigninSignUp = action.payload;
     },
     setError(state, action) {
       state.emailErr = action.payload.emailErr;
@@ -43,4 +32,4 @@ export const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
-export const { removeUser, setUser, setError } = authSlice.actions;
+export const { setError, changePageAuth } = authSlice.actions;

@@ -1,54 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
 import './header.scss';
-import MyButton from '../formComponents/MyButton';
-import { useAppDispatch, useAuth } from '../../store/hooks/redux';
-import { setUser } from '../../store/reducers/authSlice';
+import { useAppDispatch } from '../../store/hooks/redux';
+import { changePageAuth } from '../../store/reducers/authSlice';
 
 function Header() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [scrollPosition]);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { isAuth, email } = useAuth();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const onClick = () => {
     logout();
-    // dispatch(
-    //   setUser({
-    //     email: null,
-    //     id: null,
-    //     token: null,
-    //   })
-    // );
     navigate('/auth');
+  };
+  const openSignIn = () => {
+    dispatch(changePageAuth(true));
+  };
+  const openSignUp = () => {
+    dispatch(changePageAuth(false));
   };
 
   return (
-    <header className="header">
-      <button type="submit" onClick={onClick}>
-        Go Out
+    <header className={scrollPosition === 0 ? 'header' : 'header header-sticky'}>
+      <button className="header__btn" type="submit" onClick={onClick}>
+        LogOut
       </button>
-      <button type="submit">
-        {user ? <Link to="/graphiql">graphiql</Link> : <Link to="/auth">Sign In/Sign up</Link>}
-      </button>
-      {/* <div>
-        {!isAuth ? (
+      <div>
+        {!user ? (
           <>
-            <button type="submit">
-              <Link to="/auth">sign In</Link>
+            <button className="header__btn" type="submit" onClick={openSignIn}>
+              <Link className="header__link" to="/auth">
+                Login
+              </Link>
             </button>
-            <button type="submit">
-              <Link to="/auth">sign up</Link>
+            <button className="header__btn" type="submit" onClick={openSignUp}>
+              <Link className="header__link" to="/auth">
+                Register
+              </Link>
             </button>
           </>
         ) : (
-          <button type="submit">
-            <Link to="/graphiql">main Page</Link>
+          <button className="header__btn" type="submit">
+            <Link className="header__link" to="/graphiql">
+              GraphiQL
+            </Link>
           </button>
         )}
-      </div> */}
+      </div>
     </header>
   );
 }
