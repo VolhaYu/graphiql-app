@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, logInWithEmailAndPassword } from '../firebase';
-import Form from './formComponents/form';
+import { auth, logInWithEmailAndPassword } from '../../firebase';
+import Form from './form';
 
 function Login() {
   const navigate = useNavigate();
@@ -13,14 +13,7 @@ function Login() {
     if (user) navigate('/graphiql');
   };
 
-  return (
-    <>
-      {error && <h3>{error}</h3>}
-      <div>
-        <Form title="Login" handleClick={handleLogin} />
-      </div>
-    </>
-  );
+  return <Form title="Login" handleClick={handleLogin} />;
 }
 
 export default Login;

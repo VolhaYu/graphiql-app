@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import '../components/formComponents/form.scss';
-import SignUp from '../components/signUp';
-import Login from '../components/login';
-import { useAppDispatch, useAuth } from '../store/hooks/redux';
-import { changePageAuth } from '../store/reducers/authSlice';
+import './UserAuth.scss';
+import SignUp from '../../components/AuthComponents/signUp';
+import Login from '../../components/AuthComponents/login';
+import { useAppDispatch, useAuth } from '../../store/hooks/redux';
+import { changePageAuth } from '../../store/reducers/authSlice';
 
 function UserAuth() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -19,17 +19,17 @@ function UserAuth() {
   };
 
   return (
-    <>
-      <h1 className="form__h1">Create account</h1>
+    <div className="auth">
+      <h1 className="auth__h1">Create account</h1>
       {!changeSigninSignUp ? <SignUp /> : <Login />}
-      <hr className="form__hr" />
-      <p className="form__text">
+      <hr className="auth__hr" />
+      <p className="auth__text">
         {!changeSigninSignUp ? 'Already have an account? ' : 'Don’t have an account? '}
-        <span className="form__login" onClick={changePage}>
+        <span className="fauth__login" onClick={changePage}>
           {!changeSigninSignUp ? 'Login' : 'Registred'}
         </span>
       </p>
-    </>
+    </div>
   );
 }
 

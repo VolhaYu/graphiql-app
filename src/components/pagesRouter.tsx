@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import UserAuth from '../pages/UserAuth';
+import UserAuth from '../pages/UserAuth/UserAuth';
 import NotFound from '../pages/NotFound';
 import WelcomePage from '../pages/WelcomePage';
 import GraphiQlPage from '../pages/GraphiQLPage/GraphiQLPage';

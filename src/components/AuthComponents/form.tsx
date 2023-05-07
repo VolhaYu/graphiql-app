@@ -1,6 +1,5 @@
 /* eslint-disable react/function-component-definition */
 import React, { FC, SyntheticEvent, useState } from 'react';
-import './form.scss';
 import MyInput from './MyInput';
 import MyButton from './MyButton';
 import { useAuth } from '../../store/hooks/redux';
@@ -30,7 +29,6 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
 
   const changePassword = () => {
     const reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
-    console.log('соответствует регулярке?', reg.test(pass));
     if (!pass) {
       setErrorPass('Enter password');
     } else if (!reg.test(pass)) {
@@ -48,7 +46,7 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
     changePassword();
   };
   return (
-    <form className="form" onSubmit={handlerSubmit}>
+    <form className="auth__form" onSubmit={handlerSubmit}>
       {errorEmail && <div className="form__error">{errorEmail}</div>}
       <MyInput
         label="E-mail:"

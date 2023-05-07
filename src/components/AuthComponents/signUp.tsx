@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, registerWithEmailAndPassword } from '../firebase';
-import Form from './formComponents/form';
-import { setError } from '../store/reducers/authSlice';
+import { auth, registerWithEmailAndPassword } from '../../firebase';
+import Form from './form';
+import { setError } from '../../store/reducers/authSlice';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -14,11 +14,7 @@ function SignUp() {
     if (user) navigate('/graphiql');
     // navigate('/graphiql');
   };
-  return (
-    <div>
-      <Form title="Register" handleClick={handleRegisret} />
-    </div>
-  );
+  return <Form title="Register" handleClick={handleRegisret} />;
 }
 
 export default SignUp;
