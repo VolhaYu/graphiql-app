@@ -12,50 +12,44 @@ interface FormProps {
 const Form: FC<FormProps> = ({ title, handleClick }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  const [errorFormValue, setErrorFormValue] = useState({
-    emailError: '',
-    passwordError: '',
-  });
+  const [errorEmail, setErrorEmail] = useState('');
+  const [errorPass, setErrorPass] = useState('');
 
   const { emailErr, passErr } = useAuth();
 
   const changeEmail = () => {
     const regEmail = /\S+@\S+\.\S+/;
-    if (email.length > 0 && !regEmail.test(email)) {
-      setErrorFormValue({ ...errorFormValue, emailError: 'Please enter a valid e-mail' });
+    if (!email) {
+      setErrorEmail('Enter e-mail');
+    } else if (!regEmail.test(email)) {
+      setErrorEmail('Please, enter a valid e-mail');
     } else {
-      setErrorFormValue({ ...errorFormValue, emailError: '' });
+      setErrorEmail('');
     }
   };
 
   const changePassword = () => {
-    const reg = /\d{8,}/;
-    if (pass.length === 0) {
-      setErrorFormValue({
-        ...errorFormValue,
-        passwordError: 'errrooorr',
-      });
-    }
-    if (pass.length > 0 && !reg.test(pass)) {
-      setErrorFormValue({
-        ...errorFormValue,
-        passwordError: 'Password must contain at least 8 characters',
-      });
+    const reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
+    console.log('соответствует регулярке?', reg.test(pass));
+    if (!pass) {
+      setErrorPass('Enter password');
+    } else if (!reg.test(pass)) {
+      setErrorPass(
+        'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
+      );
     } else {
-      setErrorFormValue({ ...errorFormValue, passwordError: '' });
+      setErrorPass('');
     }
   };
 
   const handlerSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    // changeEmail();
-    // changePassword();
+    changeEmail();
+    changePassword();
   };
   return (
     <form className="form" onSubmit={handlerSubmit}>
-      {errorFormValue.emailError.length > 0 && (
-        <div className="form__error">{errorFormValue.emailError}</div>
-      )}
+      {errorEmail && <div className="form__error">{errorEmail}</div>}
       <MyInput
         label="E-mail:"
         type="text"
@@ -63,9 +57,7 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
         value={email}
         onChange={(e) => setEmail(e.currentTarget.value)}
       />
-      {errorFormValue.passwordError.length > 0 && (
-        <div className="form__error">{errorFormValue.passwordError}</div>
-      )}
+      {errorPass && <div className="form__error">{errorPass}</div>}
       <MyInput
         label="Password:"
         type="password"

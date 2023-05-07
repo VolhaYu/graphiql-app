@@ -24,7 +24,7 @@ function UserAuth() {
       {!changeSigninSignUp ? <SignUp /> : <Login />}
       <hr className="form__hr" />
       <p className="form__text">
-        Already have an account?{' '}
+        {!changeSigninSignUp ? 'Already have an account? ' : 'Don’t have an account? '}
         <span className="form__login" onClick={changePage}>
           {!changeSigninSignUp ? 'Login' : 'Registred'}
         </span>
