@@ -25,7 +25,7 @@ function UserAuth() {
       <hr className="auth__hr" />
       <p className="auth__text">
         {!changeSigninSignUp ? 'Already have an account? ' : 'Don’t have an account? '}
-        <span className="fauth__login" onClick={changePage}>
+        <span className="auth__login" onClick={changePage}>
           {!changeSigninSignUp ? 'Login' : 'Registred'}
         </span>
       </p>

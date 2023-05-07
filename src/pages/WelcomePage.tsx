@@ -2,12 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase';
-import { useAuth } from '../store/hooks/redux';
-import MyButton from '../components/AuthComponents/MyButton';
 
 function WelcomePage() {
-  const { isAuth, email } = useAuth();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   return (
     <div>

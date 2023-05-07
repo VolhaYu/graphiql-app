@@ -5,10 +5,8 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export function useAuth() {
-  const { emailErr, passErr, changeSigninSignUp } = useAppSelector((state) => state.authReducer);
+  const { changeSigninSignUp } = useAppSelector((state) => state.authReducer);
   return {
-    emailErr,
-    passErr,
     changeSigninSignUp,
   };
 }

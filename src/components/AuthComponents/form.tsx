@@ -2,7 +2,6 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
 import MyInput from './MyInput';
 import MyButton from './MyButton';
-import { useAuth } from '../../store/hooks/redux';
 
 interface FormProps {
   title: string;
@@ -13,8 +12,6 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
   const [pass, setPass] = useState('');
   const [errorEmail, setErrorEmail] = useState('');
   const [errorPass, setErrorPass] = useState('');
-
-  const { emailErr, passErr } = useAuth();
 
   const changeEmail = () => {
     const regEmail = /\S+@\S+\.\S+/;
@@ -44,6 +41,7 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
     e.preventDefault();
     changeEmail();
     changePassword();
+    handleClick(email, pass);
   };
   return (
     <form className="auth__form" onSubmit={handlerSubmit}>
@@ -63,7 +61,7 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
         value={pass}
         onChange={(e) => setPass(e.currentTarget.value)}
       />
-      <MyButton onClick={() => handleClick(email, pass)}>{title}</MyButton>
+      <MyButton>{title}</MyButton>
     </form>
   );
 };

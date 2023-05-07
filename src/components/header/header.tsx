@@ -23,11 +23,17 @@ function Header() {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (loading) {
+      return;
+    }
+    if (!user) navigate('/auth');
+  }, [loading, navigate, user]);
 
   const onClick = () => {
     logout();
-    navigate('/auth');
   };
   const openSignIn = () => {
     dispatch(changePageAuth(true));

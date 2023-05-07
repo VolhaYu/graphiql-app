@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -25,9 +24,8 @@ const db = getFirestore(app);
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-  } catch (err: any) {
-    console.error(err.message);
-    // alert(err.message);
+  } catch (err) {
+    console.error(err);
   }
 };
 
@@ -40,9 +38,8 @@ const registerWithEmailAndPassword = async (email: string, password: string) => 
       authProvider: 'local',
       email,
     });
-  } catch (err: any) {
-    console.error(err.message);
-    // alert(err.message);
+  } catch (err) {
+    console.error(err);
   }
 };
 
