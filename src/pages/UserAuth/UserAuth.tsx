@@ -3,7 +3,7 @@ import './UserAuth.scss';
 import SignUp from '../../components/AuthComponents/signUp';
 import Login from '../../components/AuthComponents/login';
 import { useAppDispatch, useAuth } from '../../store/hooks/redux';
-import { changePageAuth } from '../../store/reducers/authSlice';
+import { changePageAuth, setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 
 function UserAuth() {
   const [isLoginPage, setIsLoginPage] = useState(false);
@@ -12,9 +12,13 @@ function UserAuth() {
   const changePage = () => {
     if (!isLoginPage) {
       dispatch(changePageAuth(true));
+      dispatch(setErrorEmail(''));
+      dispatch(setErrorPass(''));
       return setIsLoginPage(true);
     }
     dispatch(changePageAuth(false));
+    dispatch(setErrorEmail(''));
+    dispatch(setErrorPass(''));
     return setIsLoginPage(false);
   };
 

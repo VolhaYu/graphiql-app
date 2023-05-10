@@ -2,6 +2,7 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
 import MyInput from './MyInput';
 import MyButton from './MyButton';
+import { useAppSelector } from '../../store/hooks/redux';
 
 interface FormProps {
   title: string;
@@ -10,37 +11,10 @@ interface FormProps {
 const Form: FC<FormProps> = ({ title, handleClick }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  const [errorEmail, setErrorEmail] = useState('');
-  const [errorPass, setErrorPass] = useState('');
-
-  const changeEmail = () => {
-    const regEmail = /\S+@\S+\.\S+/;
-    if (!email) {
-      setErrorEmail('Enter e-mail');
-    } else if (!regEmail.test(email)) {
-      setErrorEmail('Please, enter a valid e-mail');
-    } else {
-      setErrorEmail('');
-    }
-  };
-
-  const changePassword = () => {
-    const reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
-    if (!pass) {
-      setErrorPass('Enter password');
-    } else if (!reg.test(pass)) {
-      setErrorPass(
-        'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
-      );
-    } else {
-      setErrorPass('');
-    }
-  };
+  const { errorEmail, errorPass } = useAppSelector((state) => state.authReducer);
 
   const handlerSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    changeEmail();
-    changePassword();
     handleClick(email, pass);
   };
   return (

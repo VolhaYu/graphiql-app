@@ -4,7 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
 import './header.scss';
 import { useAppDispatch } from '../../store/hooks/redux';
-import { changePageAuth } from '../../store/reducers/authSlice';
+import { changePageAuth, setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 
 function Header() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -37,9 +37,13 @@ function Header() {
   };
   const openSignIn = () => {
     dispatch(changePageAuth(true));
+    dispatch(setErrorEmail(''));
+    dispatch(setErrorPass(''));
   };
   const openSignUp = () => {
     dispatch(changePageAuth(false));
+    dispatch(setErrorEmail(''));
+    dispatch(setErrorPass(''));
   };
 
   return (
