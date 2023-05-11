@@ -2,34 +2,37 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface AuthState {
-  name: string;
-  email: string;
-  password: string;
-  registred: boolean;
+  changeSigninSignUp: boolean;
+  errorFirebase: string;
+  errorEmail: string;
+  errorPass: string;
 }
 
 const initialState: AuthState = {
-  name: '',
-  email: '',
-  password: '',
-  registred: false,
+  changeSigninSignUp: false,
+  errorFirebase: '',
+  errorEmail: '',
+  errorPass: '',
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    addName(state, action: PayloadAction<string>) {
-      state.name = action.payload;
+    changePageAuth(state, action: PayloadAction<boolean>) {
+      state.changeSigninSignUp = action.payload;
     },
-    addEmail(state, action: PayloadAction<string>) {
-      state.email = action.payload;
+    setErrorFirebase(state, action) {
+      state.errorFirebase = action.payload;
     },
-    addPassword(state, action: PayloadAction<string>) {
-      state.password = action.payload;
+    setErrorEmail(state, action) {
+      state.errorEmail = action.payload;
+    },
+    setErrorPass(state, action) {
+      state.errorPass = action.payload;
     },
   },
 });
 
 export default authSlice.reducer;
-export const { addName, addEmail, addPassword } = authSlice.actions;
+export const { changePageAuth, setErrorFirebase, setErrorEmail, setErrorPass } = authSlice.actions;
