@@ -87,7 +87,7 @@ function SignUp() {
   return (
     <>
       {errorMessage && <div className="form__error">{errorMessage}</div>}
-      <Form title="Register" handleClick={handleRegisret} />;
+      <Form title="Register" handleClick={handleRegisret} />
     </>
   );
 }

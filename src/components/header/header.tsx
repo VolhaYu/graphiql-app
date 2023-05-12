@@ -24,16 +24,18 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
+  const currentPath = window.location.pathname;
 
   useEffect(() => {
     if (loading) {
       return;
     }
-    if (!user) navigate('/auth');
-  }, [loading, navigate, user]);
+    if (!user && currentPath === '/graphiql') navigate('/auth');
+  }, [loading, navigate, user, currentPath]);
 
   const onClick = () => {
     logout();
+    navigate('/auth');
   };
   const openSignIn = () => {
     dispatch(changePageAuth(true));
@@ -48,9 +50,7 @@ function Header() {
 
   return (
     <header className={scrollPosition === 0 ? 'header' : 'header header-sticky'}>
-      <button className="header__btn" type="submit" onClick={onClick}>
-        LogOut
-      </button>
+      <h1 className="header__h1">GRAPHIQL-APP</h1>
       <div>
         {!user ? (
           <>
@@ -66,10 +66,8 @@ function Header() {
             </button>
           </>
         ) : (
-          <button className="header__btn" type="submit">
-            <Link className="header__link" to="/graphiql">
-              GraphiQL
-            </Link>
+          <button className="header__btn" type="submit" onClick={onClick}>
+            LogOut
           </button>
         )}
       </div>
