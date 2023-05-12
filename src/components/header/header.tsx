@@ -24,16 +24,18 @@ function Header() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
+  const currentPath = window.location.pathname;
 
   useEffect(() => {
     if (loading) {
       return;
     }
-    if (!user) navigate('/auth');
-  }, [loading, navigate, user]);
+    if (!user && currentPath === '/graphiql') navigate('/auth');
+  }, [loading, navigate, user, currentPath]);
 
   const onClick = () => {
     logout();
+    navigate('/auth');
   };
   const openSignIn = () => {
     dispatch(changePageAuth(true));
