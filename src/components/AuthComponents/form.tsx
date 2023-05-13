@@ -1,5 +1,6 @@
 /* eslint-disable react/function-component-definition */
 import React, { FC, SyntheticEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import MyInput from './MyInput';
 import MyButton from './MyButton';
 import { useAppSelector } from '../../store/hooks/redux';
@@ -13,6 +14,8 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
   const [pass, setPass] = useState('');
   const { errorEmail, errorPass } = useAppSelector((state) => state.authReducer);
 
+  const { t } = useTranslation();
+
   const handlerSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     handleClick(email, pass);
@@ -21,17 +24,17 @@ const Form: FC<FormProps> = ({ title, handleClick }) => {
     <form className="auth__form" onSubmit={handlerSubmit}>
       {errorEmail && <div className="form__error">{errorEmail}</div>}
       <MyInput
-        label="E-mail:"
+        label={t('description.Auth3')}
         type="text"
-        placeholder="email"
+        placeholder={t('description.Auth3')}
         value={email}
         onChange={(e) => setEmail(e.currentTarget.value)}
       />
       {errorPass && <div className="form__error">{errorPass}</div>}
       <MyInput
-        label="Password:"
+        label={t('description.Auth4')}
         type="password"
-        placeholder="password"
+        placeholder={t('description.Auth4')}
         value={pass}
         onChange={(e) => setPass(e.currentTarget.value)}
       />

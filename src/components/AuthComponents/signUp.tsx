@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useTranslation } from 'react-i18next';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import Form from './form';
@@ -18,6 +19,8 @@ function SignUp() {
   const [user, loading] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading) {
@@ -87,7 +90,7 @@ function SignUp() {
   return (
     <>
       {errorMessage && <div className="form__error">{errorMessage}</div>}
-      <Form title="Register" handleClick={handleRegisret} />
+      <Form title={t('description.Header2')} handleClick={handleRegisret} />
     </>
   );
 }

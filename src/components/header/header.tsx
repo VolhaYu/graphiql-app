@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, logout } from '../../firebase';
 import './header.scss';
@@ -7,6 +9,12 @@ import { useAppDispatch } from '../../store/hooks/redux';
 import { changePageAuth, setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 
 function Header() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
+
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -47,27 +55,40 @@ function Header() {
     dispatch(setErrorEmail(''));
     dispatch(setErrorPass(''));
   };
+  const openWelcomePage = () => {
+    navigate('/');
+  };
 
   return (
     <header className={scrollPosition === 0 ? 'header' : 'header header-sticky'}>
-      <h1 className="header__h1">GRAPHIQL-APP</h1>
+      <h1 onClick={openWelcomePage} className="header__h1">
+        GRAPHIQL-APP
+      </h1>
+      <div>
+        <button type="submit" className="lngs-btn" onClick={() => changeLanguage('en')}>
+          EN
+        </button>
+        <button type="submit" className="lngs-btn" onClick={() => changeLanguage('ru')}>
+          RU
+        </button>
+      </div>
       <div>
         {!user ? (
           <>
             <button className="header__btn" type="submit" onClick={openSignIn}>
               <Link className="header__link" to="/auth">
-                Login
+                {t('description.Header1')}
               </Link>
             </button>
             <button className="header__btn" type="submit" onClick={openSignUp}>
               <Link className="header__link" to="/auth">
-                Register
+                {t('description.Header2')}
               </Link>
             </button>
           </>
         ) : (
           <button className="header__btn" type="submit" onClick={onClick}>
-            LogOut
+            {t('description.Header3')}
           </button>
         )}
       </div>

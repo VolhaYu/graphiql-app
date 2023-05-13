@@ -5,6 +5,7 @@ import App from './App';
 import './index.scss';
 import { setupStore } from './store/store';
 import './firebase';
+import './i18n';
 
 const store = setupStore();
 

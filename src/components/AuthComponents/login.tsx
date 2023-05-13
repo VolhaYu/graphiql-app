@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
@@ -17,6 +18,8 @@ function Login() {
   const [user, loading, error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading) {
@@ -78,7 +81,7 @@ function Login() {
   return (
     <>
       {errorMessage && <div className="form__error">{errorMessage}</div>}
-      <Form title="Login" handleClick={handleLogin} />
+      <Form title={t('description.Header1')} handleClick={handleLogin} />
     </>
   );
 }

@@ -1,0 +1,17 @@
+{
+  "title": "Internationalizing with i18next",
+  "description": {
+    "WelcPage1": "Welcome Page",
+    "WelcPage2": "Sign In/Sign up",
+    "WelcPage3": "graphiQl",
+    "Header1": "Login",
+    "Header2": "Register",
+    "Header3": "LogOut",
+    "Auth1": "Create account",
+    "Auth2": "Sign In",
+    "Auth3": "E-mail",
+    "Auth4": "Password",
+    "Auth5": "Already have an account? ",
+    "Auth6": "Don’t have an account? "
+  }
+}

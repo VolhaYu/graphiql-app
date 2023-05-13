@@ -14,10 +14,11 @@
   &__h1 {
     font-weight: bold;
     font-size: 32px;
+    cursor: pointer;
   }
 
   &__btn {
-    width: 100px;
+    min-width: 100px;
     height: 30px;
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
     border-radius: 10px;
@@ -47,4 +48,17 @@
 .header-sticky {
   height: 50px;
   background-color: #cac7c7;
+}
+.lngs-btn {
+  width: 30px;
+  box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+  border-radius: 5px;
+  font-size: 14px;
+  border: none;
+  margin: 1px;
+}
+.lngs-btn:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 3px rgba(17, 115, 132, 0.8), 0px 2px 3px rgba(17, 115, 132, 0.16);
+  color: #117384;
 }
