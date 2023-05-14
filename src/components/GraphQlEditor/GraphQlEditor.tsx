@@ -6,6 +6,7 @@ import { setQueryValue } from '../../store/reducers/queryValueSlice';
 import { setResponseValue } from '../../store/reducers/responseValueSlice';
 import { makeRequest } from '../../utils/request';
 import { ReactComponent as SendButton } from '../../assets/sendIcon.svg';
+import GraphQLEditorTools from './GraphQLEditorTools/GraphQLEditorTools';
 
 function GraphQLEditor() {
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
@@ -51,6 +52,7 @@ function GraphQLEditor() {
   }"
         />
       </div>
+      <GraphQLEditorTools />
     </div>
   );
 }

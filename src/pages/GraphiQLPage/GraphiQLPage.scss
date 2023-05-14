@@ -1,20 +1,21 @@
 .graphiql {
   width: 100%;
-  height: 100vh;
+  min-height: calc(100vh - 140px);
   display: flex;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.1);
 
   &_editor {
+    display: flex;
+    flex-direction: column;
     width: 50%;
 
     &__header {
       display: flex;
       justify-content: space-between;
-      height: 40px;
       padding: 10px 30px;
       background-color: white;
-      border-radius: 10px 10px 0 0;
+
 
       button {
         display: flex;
@@ -30,9 +31,59 @@
     }
 
     &__field {
-      height: calc(100% - 40px);
-      padding-top: 20px;
+      height: calc(100% - 120px);
+      display: flex;
+      flex-direction: column;
       background-color: white;
+
+    }
+
+    &__tools {
+      display: flex;
+      flex-direction: column;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+      }
+
+      button {
+        background-color: white;
+      }
+
+      &__tabs {
+        display: flex;
+        align-self: center;
+        gap: 10px;
+
+        button {
+          width: 100%;
+          padding: 5px;
+          background-color: white;
+          color: rgba(0, 0, 0, 0.6);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .selected {
+          color:rgba(0, 0, 0, 1)
+        }
+      }
+
+      &__field {
+        height: 0;
+        opacity: 0;
+
+        &_active {
+          height: 150px;
+          opacity: 1;
+          background-color:rgb(43, 171, 124);
+        }
+      }
     }
   }
 
