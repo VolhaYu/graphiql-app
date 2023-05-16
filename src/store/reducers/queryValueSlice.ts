@@ -15,7 +15,14 @@ const initialState: IQueryValue = {
       }
     }
   }`,
-  queryBody: '',
+  queryBody: `{
+    characters {
+      results {
+        id
+        name
+      }
+    }
+  }`,
 };
 
 export const queryValue = createSlice({

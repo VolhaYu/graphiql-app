@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
@@ -7,8 +7,10 @@ import { setResponseValue } from '../../store/reducers/responseValueSlice';
 import { makeRequest } from '../../utils/request';
 import { ReactComponent as SendButton } from '../../assets/sendIcon.svg';
 import GraphQLEditorTools from './GraphQLEditorTools/GraphQLEditorTools';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 function GraphQLEditor() {
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const options: monaco.editor.IStandaloneEditorConstructionOptions = {
     minimap: {
       enabled: false,
@@ -75,15 +77,22 @@ function GraphQLEditor() {
     changeVariables(queryValue);
   }, [queryValue, parsedVariablesValue]);
 
+  useEffect(() => {
+    setTimeout(() => setErrorMessage(''), 2000);
+  }, [errorMessage]);
+
   return (
     <div className="graphiql_editor">
+      <ErrorMessage message={errorMessage} />
       <div className="graphiql_editor__header">
         <p>Operation:</p>
         <button
           type="button"
           onClick={async () =>
             dispatch(
-              setResponseValue(await makeRequest(queryBodyValue || queryValue, parsedHeadersValue))
+              setResponseValue(
+                await makeRequest(queryBodyValue, parsedHeadersValue, setErrorMessage)
+              )
             )
           }
         >
