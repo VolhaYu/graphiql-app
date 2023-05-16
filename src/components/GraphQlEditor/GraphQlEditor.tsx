@@ -16,7 +16,8 @@ function GraphQLEditor() {
     overviewRulerBorder: false,
     overviewRulerLanes: 0,
   };
-  const parsedValue = useAppSelector((state) => state.variablesValueSlice.parsedValue);
+  const parsedVariablesValue = useAppSelector((state) => state.variablesValueSlice.parsedValue);
+  const parsedHeadersValue = useAppSelector((state) => state.headersValueSlice.parsedValue);
   const queryValue = useAppSelector((state) => state.queryValueSlice.value);
   const queryBodyValue = useAppSelector((state) => state.queryValueSlice.queryBody);
   const dispatch = useAppDispatch();
@@ -53,9 +54,12 @@ function GraphQLEditor() {
 
       if (argumentsArray.length && queryBody) {
         for (let i = 0; i < argumentsArray.length; i += 1) {
-          if (parsedValue[argumentsArray[i]]) {
+          if (parsedVariablesValue[argumentsArray[i]]) {
             const regexPattern = new RegExp(`\\$${argumentsArray[i]}`, 'g');
-            queryBody = queryBody.replace(regexPattern, String(parsedValue[argumentsArray[i]]));
+            queryBody = queryBody.replace(
+              regexPattern,
+              String(parsedVariablesValue[argumentsArray[i]])
+            );
           }
         }
       }
@@ -69,7 +73,7 @@ function GraphQLEditor() {
 
   useEffect(() => {
     changeVariables(queryValue);
-  }, [queryValue, parsedValue]);
+  }, [queryValue, parsedVariablesValue]);
 
   return (
     <div className="graphiql_editor">
@@ -78,7 +82,9 @@ function GraphQLEditor() {
         <button
           type="button"
           onClick={async () =>
-            dispatch(setResponseValue(await makeRequest(queryBodyValue || queryValue)))
+            dispatch(
+              setResponseValue(await makeRequest(queryBodyValue || queryValue, parsedHeadersValue))
+            )
           }
         >
           <SendButton />
