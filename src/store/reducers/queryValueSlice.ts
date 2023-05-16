@@ -3,6 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface IQueryValue {
   value: string | undefined;
+  queryBody: string | undefined;
 }
 
 const initialState: IQueryValue = {
@@ -14,6 +15,7 @@ const initialState: IQueryValue = {
       }
     }
   }`,
+  queryBody: '',
 };
 
 export const queryValue = createSlice({
@@ -23,8 +25,11 @@ export const queryValue = createSlice({
     setQueryValue(state, action: PayloadAction<string | undefined>) {
       state.value = action.payload;
     },
+    setQueryBodyValue(state, action: PayloadAction<string | undefined>) {
+      state.queryBody = action.payload;
+    },
   },
 });
 
 export default queryValue.reducer;
-export const { setQueryValue } = queryValue.actions;
+export const { setQueryValue, setQueryBodyValue } = queryValue.actions;
