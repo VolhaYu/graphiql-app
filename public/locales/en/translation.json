@@ -12,6 +12,12 @@
     "Auth3": "E-mail",
     "Auth4": "Password",
     "Auth5": "Already have an account? ",
-    "Auth6": "Don’t have an account? "
+    "Auth6": "Don’t have an account? ",
+    "invalid-email": "This email address is invalid!",
+    "user-disabled": "This email address is disabled by the administrator!",
+    "user-not-found": "This email address is not registered!",
+    "wrong-password": "The password is invalid or the user does not have a password!",
+    "!email": "Please, enter e-mail",
+    "!password": "Please, enter password"
   }
 }

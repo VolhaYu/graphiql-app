@@ -48,9 +48,6 @@ function Login() {
         case 'auth/wrong-password':
           setErrorMessage('The password is invalid or the user does not have a password.');
           break;
-        case 'auth/missing-password':
-          setErrorMessage('Missing password');
-          break;
         default:
           setErrorMessage(errMessage);
           break;

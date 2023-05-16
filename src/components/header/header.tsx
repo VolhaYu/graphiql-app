@@ -13,6 +13,7 @@ function Header() {
 
   const changeLanguage = (language: string) => {
     i18n.changeLanguage(language);
+    return language;
   };
 
   const [scrollPosition, setScrollPosition] = useState(0);
