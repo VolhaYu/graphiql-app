@@ -1,0 +1,19 @@
+.error-pop-up {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  padding: 20px;
+  height: 70px;
+  width: 140px;
+  background-color: red;
+  border-radius: 10px;
+  z-index: 1;
+  visibility: hidden;
+  p {
+    text-align: center;
+  }
+}
+
+.visible {
+  visibility: visible;
+}
