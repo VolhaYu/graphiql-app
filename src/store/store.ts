@@ -2,11 +2,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducers/authSlice';
 import queryValueSlice from './reducers/queryValueSlice';
 import responseValueSlice from './reducers/responseValueSlice';
+import variablesValueSlice from './reducers/variablesValueSlice';
+import headersValueSlice from './reducers/headersValueSlice';
 
 const rootReducer = combineReducers({
   authReducer,
   queryValueSlice,
   responseValueSlice,
+  variablesValueSlice,
+  headersValueSlice,
 });
 
 export const setupStore = () => {
