@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Editor from '@monaco-editor/react';
 import * as monaco from 'monaco-editor';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../store/hooks/redux';
 import { setQueryValue, setQueryBodyValue } from '../../store/reducers/queryValueSlice';
 import { setResponseValue } from '../../store/reducers/responseValueSlice';
@@ -81,11 +82,13 @@ function GraphQLEditor() {
     setTimeout(() => setErrorMessage(''), 2000);
   }, [errorMessage]);
 
+  const { t } = useTranslation();
+
   return (
     <div className="graphiql_editor">
       <ErrorMessage message={errorMessage} />
       <div className="graphiql_editor__header">
-        <p>Operation:</p>
+        <p>{t('description.Operation')}</p>
         <button
           type="button"
           onClick={async () =>

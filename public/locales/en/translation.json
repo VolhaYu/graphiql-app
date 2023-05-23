@@ -18,6 +18,10 @@
     "user-not-found": "This email address is not registered!",
     "wrong-password": "The password is invalid or the user does not have a password!",
     "!email": "Please, enter e-mail",
-    "!password": "Please, enter password"
+    "!password": "Please, enter password",
+    "Operation": "Operation:",
+    "Response": "Response:",
+    "Variables": "Variables",
+    "Headers": "Headers"
   }
 }

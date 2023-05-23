@@ -8,12 +8,15 @@ import './header.scss';
 import { useAppDispatch } from '../../store/hooks/redux';
 import { changePageAuth, setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 
+interface Locale {
+  [key: string]: { title: string };
+}
+
 function Header() {
   const { t, i18n } = useTranslation();
-
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
-    return language;
+  const locales: Locale = {
+    en: { title: 'EN' },
+    ru: { title: 'RU' },
   };
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -66,12 +69,17 @@ function Header() {
         GRAPHIQL-APP
       </h1>
       <div>
-        <button type="submit" className="lngs-btn" onClick={() => changeLanguage('en')}>
-          EN
-        </button>
-        <button type="submit" className="lngs-btn" onClick={() => changeLanguage('ru')}>
-          RU
-        </button>
+        {Object.keys(locales).map((locale) => (
+          <button
+            key={locale}
+            style={{ fontWeight: i18n.resolvedLanguage === locale ? 'bold' : 'normal' }}
+            className="lngs-btn"
+            type="submit"
+            onClick={() => i18n.changeLanguage(locale)}
+          >
+            {locales[locale].title}
+          </button>
+        ))}
       </div>
       <div>
         {!user ? (

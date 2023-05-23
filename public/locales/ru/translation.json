@@ -18,6 +18,10 @@
     "user-not-found": "Этот адрес электронной почты не зарегистрирован!",
     "wrong-password": "Пароль недействителен или у пользователя нет пароля!",
     "!email": "Please, enter e-mail",
-    "!password": "Please, enter password"
+    "!password": "Please, enter password",
+    "Operation": "Операция:",
+    "Response": "Ответ:",
+    "Variables": "Переменные",
+    "Headers": "Заголовки"
   }
 }
