@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import Form from './form';
 import { useAppDispatch } from '../../store/hooks/redux';
 import { setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
+import '../../i18n';
 
 export interface Error {
   message: string;
@@ -20,7 +22,7 @@ function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation', { useSuspense: true });
 
   useEffect(() => {
     if (loading) {
@@ -43,16 +45,20 @@ function SignUp() {
 
       switch (errorCode) {
         case 'auth/weak-password':
-          setErrorMessage('The password is too weak.');
+          setErrorMessage(t('description.weak-password') as string);
+          // setErrorMessage('The password is too weak.');
           break;
         case 'auth/email-already-in-use':
-          setErrorMessage('This email address is already in use by another account.');
+          setErrorMessage(i18next.t('description.email-already') as string);
+          // setErrorMessage('This email address is already in use by another account.');
           break;
         case 'auth/invalid-email':
-          setErrorMessage('This email address is invalid.');
+          setErrorMessage(i18next.t('description.invalid-email') as string);
+          // setErrorMessage('This email address is invalid.');
           break;
         case 'auth/operation-not-allowed':
-          setErrorMessage('Email/password accounts are not enabled.');
+          setErrorMessage(i18next.t('description.not-allowed') as string);
+          // setErrorMessage('Email/password accounts are not enabled.');
           break;
         default:
           setErrorMessage(errMessage);
@@ -65,15 +71,17 @@ function SignUp() {
     const regPass = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
     const regEmail = /\S+@\S+\.\S+/;
     if (!regEmail.test(email)) {
-      dispatch(setErrorEmail('Please, enter a valid e-mail'));
+      dispatch(setErrorEmail(i18next.t('description.validEmail') as string));
+      // dispatch(setErrorEmail('Please, enter a valid e-mail'));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!regPass.test(password)) {
       dispatch(
-        setErrorPass(
-          'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
-        )
+        setErrorPass(i18next.t('description.validPassword') as string)
+        // setErrorPass(
+        //   'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
+        // )
       );
     } else {
       dispatch(setErrorPass(''));

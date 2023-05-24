@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
+import { Translation, useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import Form from './form';
 import { setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 import { useAppDispatch } from '../../store/hooks/redux';
+import '../../i18n';
 
 export interface Error {
   message: string;
@@ -14,12 +16,11 @@ export interface Error {
 }
 
 function Login() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading) {
@@ -37,16 +38,19 @@ function Login() {
 
       switch (errorCode) {
         case 'auth/invalid-email':
-          setErrorMessage('This email address is invalid.');
+          setErrorMessage(i18next.t('description.invalid-email') as string);
           break;
         case 'auth/user-disabled':
-          setErrorMessage('This email address is disabled by the administrator.');
+          setErrorMessage(i18next.t('description.user-disabled') as string);
+          // setErrorMessage('This email address is disabled by the administrator.');
           break;
         case 'auth/user-not-found':
-          setErrorMessage('This email address is not registered.');
+          setErrorMessage(i18next.t('description.user-not-found') as string);
+          // setErrorMessage('This email address is not registered.');
           break;
         case 'auth/wrong-password':
-          setErrorMessage('The password is invalid or the user does not have a password.');
+          setErrorMessage(i18next.t('description.wrong-password') as string);
+          // setErrorMessage('The password is invalid or the user does not have a password.');
           break;
         default:
           setErrorMessage(errMessage);
@@ -57,12 +61,12 @@ function Login() {
 
   const validForm = (email: string, password: string) => {
     if (!email) {
-      dispatch(setErrorEmail('Please, enter e-mail'));
+      dispatch(setErrorEmail(i18next.t('description.!email') as string));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!password) {
-      dispatch(setErrorPass('Please, enter password'));
+      dispatch(setErrorPass(i18next.t('description.!password') as string));
     } else {
       dispatch(setErrorPass(''));
     }

@@ -19,6 +19,11 @@ function Header() {
     ru: { title: 'RU' },
   };
 
+  const changeLanguage = (locale: string) => {
+    localStorage.setItem('lang', locale);
+    i18n.changeLanguage(locale);
+  };
+
   const [scrollPosition, setScrollPosition] = useState(0);
   const handleScroll = () => {
     const position = window.pageYOffset;
@@ -75,7 +80,7 @@ function Header() {
             style={{ fontWeight: i18n.resolvedLanguage === locale ? 'bold' : 'normal' }}
             className="lngs-btn"
             type="submit"
-            onClick={() => i18n.changeLanguage(locale)}
+            onClick={() => changeLanguage(locale)}
           >
             {locales[locale].title}
           </button>

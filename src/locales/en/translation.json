@@ -19,6 +19,12 @@
     "wrong-password": "The password is invalid or the user does not have a password!",
     "!email": "Please, enter e-mail",
     "!password": "Please, enter password",
+
+    "weak-password": "The password is too weak!",
+    "email-already": "This email address is already in use by another account!",
+    "not-allowed": "Email/password accounts are not enabled!",
+    "validEmail": "Please, enter a valid e-mail",
+    "validPassword": "Password must contain minimum 8 symbols, at least one letter, one digit, one special character",
     "Operation": "Operation:",
     "Response": "Response:",
     "Variables": "Variables",
