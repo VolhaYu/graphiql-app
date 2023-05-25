@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import i18next from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
@@ -22,14 +21,14 @@ function SignUp() {
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
 
-  const { t } = useTranslation('translation', { useSuspense: true });
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading) {
       return;
     }
     if (user) navigate('/graphiql');
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, t]);
 
   const registerWithEmailAndPassword = async (email: string, password: string) => {
     try {
@@ -46,19 +45,15 @@ function SignUp() {
       switch (errorCode) {
         case 'auth/weak-password':
           setErrorMessage(t('description.weak-password') as string);
-          // setErrorMessage('The password is too weak.');
           break;
         case 'auth/email-already-in-use':
-          setErrorMessage(i18next.t('description.email-already') as string);
-          // setErrorMessage('This email address is already in use by another account.');
+          setErrorMessage(t('description.email-already') as string);
           break;
         case 'auth/invalid-email':
-          setErrorMessage(i18next.t('description.invalid-email') as string);
-          // setErrorMessage('This email address is invalid.');
+          setErrorMessage(t('description.invalid-email') as string);
           break;
         case 'auth/operation-not-allowed':
-          setErrorMessage(i18next.t('description.not-allowed') as string);
-          // setErrorMessage('Email/password accounts are not enabled.');
+          setErrorMessage(t('description.not-allowed') as string);
           break;
         default:
           setErrorMessage(errMessage);
@@ -71,18 +66,12 @@ function SignUp() {
     const regPass = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
     const regEmail = /\S+@\S+\.\S+/;
     if (!regEmail.test(email)) {
-      dispatch(setErrorEmail(i18next.t('description.validEmail') as string));
-      // dispatch(setErrorEmail('Please, enter a valid e-mail'));
+      dispatch(setErrorEmail(t('description.validEmail') as string));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!regPass.test(password)) {
-      dispatch(
-        setErrorPass(i18next.t('description.validPassword') as string)
-        // setErrorPass(
-        //   'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
-        // )
-      );
+      dispatch(setErrorPass(t('description.validPassword') as string));
     } else {
       dispatch(setErrorPass(''));
     }
