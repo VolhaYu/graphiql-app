@@ -22,7 +22,7 @@ function Login() {
     if (loading) {
       return;
     }
-    if (user) navigate('/graphiql');
+    if (user) navigate('/graphiql/');
   }, [user, loading, navigate, error]);
 
   const logInWithEmailAndPassword = async (email: string, password: string) => {
