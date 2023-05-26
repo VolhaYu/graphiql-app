@@ -3,7 +3,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../store/hooks/redux';
-import { colon } from '../../constants';
+import { colon, exclamationPoint, leftSquareBracket, rightSquareBracket } from '../../constants';
 import { ReactComponent as TypeIcon } from '../../assets/typeIcon.svg';
 import { ReactComponent as ArgumentIcon } from '../../assets/argumentIcon.svg';
 import Loader from '../loader/Loader';
@@ -29,10 +29,20 @@ function FieldDescription() {
   const argumentTypeName = args.map((argsNames) =>
     argsNames.type.name
       ? argsNames.type.name
+      : argsNames.name === 'ids'
+      ? leftSquareBracket +
+        argsNames.type.ofType.ofType.ofType.name +
+        rightSquareBracket +
+        exclamationPoint
+      : argsNames.name === 'id'
+      ? argsNames.type.ofType.name + exclamationPoint
       : argsNames.type.ofType.name
       ? argsNames.type.ofType.name
       : argsNames.type.ofType.ofType.ofType.name
   );
+
+  const typeName =
+    type.kind === 'LIST' ? leftSquareBracket + type.ofType.name + rightSquareBracket : type.name;
 
   return (
     <>
@@ -56,9 +66,15 @@ function FieldDescription() {
         <button
           type="button"
           className="graphiql_schema__fields-item__type-name-btn"
-          onClick={() => navigate(`${type.name}`)}
+          onClick={() =>
+            navigate(
+              `${
+                type.kind === 'LIST' ? `type-descr/${type.ofType.name}` : `type-descr/${typeName}`
+              }`
+            )
+          }
         >
-          {type.name}
+          {typeName}
         </button>
 
         <div className="graphiql_schema__fields-item__argument-name-title">
@@ -72,9 +88,27 @@ function FieldDescription() {
               type="button"
               className="graphiql_schema__fields-item__argument-type-name-btn"
               key={index}
-              onClick={() => navigate(`${argumentTypeName}`)}
+              onClick={() =>
+                navigate(
+                  argsNames.name === 'filter'
+                    ? `arg-input-object/${
+                        argsNames.type.name
+                          ? argsNames.type.name
+                          : argsNames.type.ofType.name
+                          ? argsNames.type.ofType.name
+                          : argsNames.type.ofType.ofType.ofType.name
+                      }`
+                    : `arg-scalar/${
+                        argsNames.type.name
+                          ? argsNames.type.name
+                          : argsNames.type.ofType.name
+                          ? argsNames.type.ofType.name
+                          : argsNames.type.ofType.ofType.ofType.name
+                      }`
+                )
+              }
             >
-              {argumentTypeName}
+              {argsNames.type.name || argumentTypeName}
             </button>
           </div>
         ))}

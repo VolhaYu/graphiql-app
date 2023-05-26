@@ -31,7 +31,7 @@ function ArgumentInputObject() {
           className="graphiql_schema__breadCrumbs-btn"
           onClick={() => navigate(-1)}
         >
-          {'< Query'}
+          {'< Go Back'}
         </button>
 
         <h3 className="graphiql_schema__header_h3">{field.name}</h3>
@@ -49,6 +49,7 @@ function ArgumentInputObject() {
               <button
                 type="button"
                 className="graphiql_schema__fields-item-detailed__argument-name-btn__type-detailed-description"
+                onClick={() => navigate(`arg-descr/${inputField.name}`)}
               >
                 {inputField.name}
               </button>
@@ -58,7 +59,7 @@ function ArgumentInputObject() {
               <button
                 type="button"
                 className="graphiql_schema__fields-item-detailed__argument-type-name-btn__type-detailed-description"
-                // onClick={() => navigate(`${inputfieldItem.type.name}`)}
+                onClick={() => navigate(`${inputField.type.name}`)}
               >
                 {inputField.type.name}
               </button>

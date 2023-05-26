@@ -22,16 +22,12 @@ function Field({ field }: FieldProps) {
 
   const navigate = useNavigate();
 
-  const argumentTypeNameList = args.map(
-    (argsNames) =>
-      argsNames.type.name
-        ? argsNames.type.name
-        : //   character , location, episode
-        argsNames.type.ofType.name
-        ? argsNames.type.ofType.name
-        : // characters , locations, episodes
-          argsNames.type.ofType.ofType.ofType.name
-    // ids
+  const argumentTypeNameList = args.map((argsNames) =>
+    argsNames.type.name
+      ? argsNames.type.name
+      : argsNames.type.ofType.name
+      ? argsNames.type.ofType.name
+      : argsNames.type.ofType.ofType.ofType.name
   );
 
   const argumentTypeName =

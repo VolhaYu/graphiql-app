@@ -30,7 +30,7 @@ function ArgumentScalar() {
           className="graphiql_schema__breadCrumbs-btn"
           onClick={() => navigate(-1)}
         >
-          {'< Query'}
+          {'< Go Back'}
         </button>
         <h3 className="graphiql_schema__header_h3">{schemaField.name}</h3>
       </div>

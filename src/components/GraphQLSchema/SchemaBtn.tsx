@@ -7,12 +7,11 @@ function SchemaBtn() {
   const [isClickSchema, setClickSchema] = useState(false);
 
   const navigate = useNavigate();
-  const locationDocs = useLocation().pathname.endsWith('docs');
   const locationGraphiql = useLocation().pathname.endsWith('graphiql/');
 
   function handleClickSchemaBtn() {
     setClickSchema(true);
-    return locationDocs ? navigate(-1) : locationGraphiql ? navigate('docs') : '';
+    return locationGraphiql ? navigate('docs') : navigate('/graphiql/');
   }
 
   return (
