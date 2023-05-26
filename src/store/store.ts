@@ -4,6 +4,7 @@ import queryValueSlice from './reducers/queryValueSlice';
 import responseValueSlice from './reducers/responseValueSlice';
 import variablesValueSlice from './reducers/variablesValueSlice';
 import headersValueSlice from './reducers/headersValueSlice';
+import schemaValueSlice from './reducers/schemaValueSlice';
 
 const rootReducer = combineReducers({
   authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   responseValueSlice,
   variablesValueSlice,
   headersValueSlice,
+  schemaValueSlice,
 });
 
 export const setupStore = () => {
