@@ -47,7 +47,7 @@ function Header() {
     if (loading) {
       return;
     }
-    if (!user && currentPath === '/graphiql') navigate('/auth');
+    if (!user && currentPath === '/graphiql/') navigate('/auth');
   }, [loading, navigate, user, currentPath]);
 
   const onClick = () => {
