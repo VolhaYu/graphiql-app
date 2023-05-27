@@ -27,8 +27,8 @@ function SignUp() {
     if (loading) {
       return;
     }
-    if (user) navigate('/graphiql');
-  }, [user, loading, navigate, t]);
+    if (user) navigate('/graphiql/');
+  }, [user, loading, navigate]);
 
   const registerWithEmailAndPassword = async (email: string, password: string) => {
     try {

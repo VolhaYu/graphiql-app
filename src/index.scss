@@ -30,3 +30,14 @@ body {
 .main {
   min-height: calc(100vh - 140px);
 }
+
+:root {
+  --color-info: rgb(54, 34, 206);
+  --color-type: rgb(206, 149, 34);
+  --color-punctuation: rgb(85, 83, 103);
+  --color-argument-name: rgb(206, 34, 48);
+  --color-schema-btn: rgb(43, 171, 124);
+  --font-size-h2: 30px;
+  --font-size-h3: 25px;
+  --font-size-h4: 16px;
+}
