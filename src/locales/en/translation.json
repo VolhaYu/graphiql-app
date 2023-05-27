@@ -28,6 +28,7 @@
     "Operation": "Operation:",
     "Response": "Response:",
     "Variables": "Variables",
-    "Headers": "Headers"
+    "Headers": "Headers",
+    "schema": "SCHEMA"
   }
 }

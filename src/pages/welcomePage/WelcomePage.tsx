@@ -14,7 +14,7 @@ function WelcomePage() {
       <h1 className="welcome-page__h1">{t('description.WelcPage1')}</h1>
       <button type="submit" className="welcome-page__btn">
         {user ? (
-          <Link className="welcome-page__link" to="/graphiql">
+          <Link className="welcome-page__link" to="/graphiql/">
             {t('description.WelcPage3')}
           </Link>
         ) : (

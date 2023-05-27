@@ -27,6 +27,7 @@
     "Operation": "Операция:",
     "Response": "Ответ:",
     "Variables": "Переменные",
-    "Headers": "Заголовки"
+    "Headers": "Заголовки",
+    "schema": "СХЕМА"
   }
 }

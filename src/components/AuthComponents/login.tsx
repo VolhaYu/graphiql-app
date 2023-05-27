@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import i18next from 'i18next';
-import { Translation, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
@@ -38,19 +37,16 @@ function Login() {
 
       switch (errorCode) {
         case 'auth/invalid-email':
-          setErrorMessage(i18next.t('description.invalid-email') as string);
+          setErrorMessage(t('description.invalid-email') as string);
           break;
         case 'auth/user-disabled':
-          setErrorMessage(i18next.t('description.user-disabled') as string);
-          // setErrorMessage('This email address is disabled by the administrator.');
+          setErrorMessage(t('description.user-disabled') as string);
           break;
         case 'auth/user-not-found':
-          setErrorMessage(i18next.t('description.user-not-found') as string);
-          // setErrorMessage('This email address is not registered.');
+          setErrorMessage(t('description.user-not-found') as string);
           break;
         case 'auth/wrong-password':
-          setErrorMessage(i18next.t('description.wrong-password') as string);
-          // setErrorMessage('The password is invalid or the user does not have a password.');
+          setErrorMessage(t('description.wrong-password') as string);
           break;
         default:
           setErrorMessage(errMessage);
@@ -61,12 +57,12 @@ function Login() {
 
   const validForm = (email: string, password: string) => {
     if (!email) {
-      dispatch(setErrorEmail(i18next.t('description.!email') as string));
+      dispatch(setErrorEmail(t('description.!email') as string));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!password) {
-      dispatch(setErrorPass(i18next.t('description.!password') as string));
+      dispatch(setErrorPass(t('description.!password') as string));
     } else {
       dispatch(setErrorPass(''));
     }
