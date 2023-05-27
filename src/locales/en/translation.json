@@ -1,0 +1,34 @@
+{
+  "title": "Internationalizing with i18next",
+  "description": {
+    "WelcPage1": "Welcome Page",
+    "WelcPage2": "Sign In/Sign up",
+    "WelcPage3": "graphiQl",
+    "Header1": "Login",
+    "Header2": "Register",
+    "Header3": "LogOut",
+    "Auth1": "Create account",
+    "Auth2": "Sign In",
+    "Auth3": "E-mail",
+    "Auth4": "Password",
+    "Auth5": "Already have an account? ",
+    "Auth6": "Don’t have an account? ",
+    "invalid-email": "This email address is invalid!",
+    "user-disabled": "This email address is disabled by the administrator!",
+    "user-not-found": "This email address is not registered!",
+    "wrong-password": "The password is invalid or the user does not have a password!",
+    "!email": "Please, enter e-mail",
+    "!password": "Please, enter password",
+
+    "weak-password": "The password is too weak!",
+    "email-already": "This email address is already in use by another account!",
+    "not-allowed": "Email/password accounts are not enabled!",
+    "validEmail": "Please, enter a valid e-mail",
+    "validPassword": "Password must contain minimum 8 symbols, at least one letter, one digit, one special character",
+    "Operation": "Operation:",
+    "Response": "Response:",
+    "Variables": "Variables",
+    "Headers": "Headers",
+    "schema": "SCHEMA"
+  }
+}

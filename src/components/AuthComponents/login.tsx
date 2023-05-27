@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import Form from './form';
 import { setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
 import { useAppDispatch } from '../../store/hooks/redux';
+import '../../i18n';
 
 export interface Error {
   message: string;
@@ -13,6 +15,7 @@ export interface Error {
 }
 
 function Login() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, loading, error] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
@@ -34,19 +37,16 @@ function Login() {
 
       switch (errorCode) {
         case 'auth/invalid-email':
-          setErrorMessage('This email address is invalid.');
+          setErrorMessage(t('description.invalid-email') as string);
           break;
         case 'auth/user-disabled':
-          setErrorMessage('This email address is disabled by the administrator.');
+          setErrorMessage(t('description.user-disabled') as string);
           break;
         case 'auth/user-not-found':
-          setErrorMessage('This email address is not registered.');
+          setErrorMessage(t('description.user-not-found') as string);
           break;
         case 'auth/wrong-password':
-          setErrorMessage('The password is invalid or the user does not have a password.');
-          break;
-        case 'auth/missing-password':
-          setErrorMessage('Missing password');
+          setErrorMessage(t('description.wrong-password') as string);
           break;
         default:
           setErrorMessage(errMessage);
@@ -57,12 +57,12 @@ function Login() {
 
   const validForm = (email: string, password: string) => {
     if (!email) {
-      dispatch(setErrorEmail('Please, enter e-mail'));
+      dispatch(setErrorEmail(t('description.!email') as string));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!password) {
-      dispatch(setErrorPass('Please, enter password'));
+      dispatch(setErrorPass(t('description.!password') as string));
     } else {
       dispatch(setErrorPass(''));
     }
@@ -78,7 +78,7 @@ function Login() {
   return (
     <>
       {errorMessage && <div className="form__error">{errorMessage}</div>}
-      <Form title="Login" handleClick={handleLogin} />
+      <Form title={t('description.Header1')} handleClick={handleLogin} />
     </>
   );
 }

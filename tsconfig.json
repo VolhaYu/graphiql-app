@@ -19,5 +19,5 @@
     "./src/**/*",
     ".eslintrc.cjs",
     "vite.config.ts",
-    "styled.d.ts"]
+    "react-i18n.d.ts"]
 }

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useTranslation } from 'react-i18next';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import Form from './form';
 import { useAppDispatch } from '../../store/hooks/redux';
 import { setErrorEmail, setErrorPass } from '../../store/reducers/authSlice';
+import '../../i18n';
 
 export interface Error {
   message: string;
@@ -18,6 +20,8 @@ function SignUp() {
   const [user, loading] = useAuthState(auth);
   const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useAppDispatch();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (loading) {
@@ -40,16 +44,16 @@ function SignUp() {
 
       switch (errorCode) {
         case 'auth/weak-password':
-          setErrorMessage('The password is too weak.');
+          setErrorMessage(t('description.weak-password') as string);
           break;
         case 'auth/email-already-in-use':
-          setErrorMessage('This email address is already in use by another account.');
+          setErrorMessage(t('description.email-already') as string);
           break;
         case 'auth/invalid-email':
-          setErrorMessage('This email address is invalid.');
+          setErrorMessage(t('description.invalid-email') as string);
           break;
         case 'auth/operation-not-allowed':
-          setErrorMessage('Email/password accounts are not enabled.');
+          setErrorMessage(t('description.not-allowed') as string);
           break;
         default:
           setErrorMessage(errMessage);
@@ -62,16 +66,12 @@ function SignUp() {
     const regPass = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^\w\s]).{8,}/;
     const regEmail = /\S+@\S+\.\S+/;
     if (!regEmail.test(email)) {
-      dispatch(setErrorEmail('Please, enter a valid e-mail'));
+      dispatch(setErrorEmail(t('description.validEmail') as string));
     } else {
       dispatch(setErrorEmail(''));
     }
     if (!regPass.test(password)) {
-      dispatch(
-        setErrorPass(
-          'Password must contain minimum 8 symbols, at least one letter, one digit, one special character'
-        )
-      );
+      dispatch(setErrorPass(t('description.validPassword') as string));
     } else {
       dispatch(setErrorPass(''));
     }
@@ -87,7 +87,7 @@ function SignUp() {
   return (
     <>
       {errorMessage && <div className="form__error">{errorMessage}</div>}
-      <Form title="Register" handleClick={handleRegisret} />
+      <Form title={t('description.Header2')} handleClick={handleRegisret} />
     </>
   );
 }
