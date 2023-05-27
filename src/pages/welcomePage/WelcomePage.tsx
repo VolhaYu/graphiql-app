@@ -11,7 +11,17 @@ function WelcomePage() {
 
   return (
     <main className="main">
-      <h1 className="welcome-page__h1">{t('description.WelcPage1')}</h1>
+      <h1 className="welcome-page__h1">GraphQL</h1>
+      <h3 className="welcome-page__h3">{t('description.WelcPage1')}</h3>
+      <p className="welcome-page__text">
+        {t('description.WelcPage4')}
+        <Link to="https://rickandmortyapi.com/">{t('description.WelcPage5')}</Link>
+      </p>
+      <p className="welcome-page__text">
+        {t('description.WelcPage6')}
+        <Link to="https://rs.school/index.html">The Rolling Scopes School</Link>
+      </p>
+      <p className="welcome-page__text">{t('description.WelcPage7')}</p>
       <button type="submit" className="welcome-page__btn">
         {user ? (
           <Link className="welcome-page__link" to="/graphiql/">
