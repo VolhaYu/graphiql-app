@@ -5,6 +5,7 @@ import responseValueSlice from './reducers/responseValueSlice';
 import variablesValueSlice from './reducers/variablesValueSlice';
 import headersValueSlice from './reducers/headersValueSlice';
 import schemaValueSlice from './reducers/schemaValueSlice';
+import responseStatusSlice from './reducers/responseStatusSlice';
 
 const rootReducer = combineReducers({
   authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   variablesValueSlice,
   headersValueSlice,
   schemaValueSlice,
+  responseStatusSlice,
 });
 
 export const setupStore = () => {

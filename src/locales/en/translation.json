@@ -29,6 +29,7 @@
     "Response": "Response:",
     "Variables": "Variables",
     "Headers": "Headers",
-    "schema": "SCHEMA"
+    "schema": "SCHEMA",
+    "request-error": "Request error"
   }
 }

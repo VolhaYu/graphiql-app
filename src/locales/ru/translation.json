@@ -28,6 +28,7 @@
     "Response": "Ответ:",
     "Variables": "Переменные",
     "Headers": "Заголовки",
-    "schema": "СХЕМА"
+    "schema": "СХЕМА",
+    "request-error": "Ошибка запроса"
   }
 }
