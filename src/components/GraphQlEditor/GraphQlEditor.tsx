@@ -94,7 +94,7 @@ function GraphQLEditor() {
           onClick={async () =>
             dispatch(
               setResponseValue(
-                await makeRequest(queryBodyValue, parsedHeadersValue, setErrorMessage)
+                await makeRequest(queryBodyValue, parsedHeadersValue, setErrorMessage, dispatch)
               )
             )
           }
