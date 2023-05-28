@@ -1,9 +1,13 @@
 {
   "title": "Internationalizing with i18next",
   "description": {
-    "WelcPage1": "Welcome Page",
+    "WelcPage1": "A query language for APIs and a runtime for fulfilling those queries ",
     "WelcPage2": "Sign In/Sign up",
     "WelcPage3": "graphiQl",
+    "WelcPage4": "We use ",
+    "WelcPage5": "The Rick and Morty API",
+    "WelcPage6": "This is the final task of the REACT course from ",
+    "WelcPage7": "Links to the authors of the assignment and the course can be found at the bottom of the page.",
     "Header1": "Login",
     "Header2": "Register",
     "Header3": "LogOut",
