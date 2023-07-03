@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+html {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+body {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+#root {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+}
+.main {
+  min-height: calc(100vh - 140px);
+}
+
+:root {
+  --color-info: rgb(54, 34, 206);
+  --color-type: rgb(206, 149, 34);
+  --color-punctuation: rgb(85, 83, 103);
+  --color-argument-name: rgb(206, 34, 48);
+  --color-schema-btn: rgb(43, 171, 124);
+  --font-size-h2: 30px;
+  --font-size-h3: 25px;
+  --font-size-h4: 16px;
+}

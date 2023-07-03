@@ -1,0 +1,356 @@
+.graphiql {
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  &_editor {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    flex: 1 1 auto;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 30px;
+      background-color: white;
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+        background-color: rgb(43, 171, 124);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    }
+
+    &__field {
+      height: calc(100% - 120px);
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+    &__tools {
+      display: flex;
+      flex-direction: column;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+      }
+
+      button {
+        background-color: white;
+      }
+
+      &__tabs {
+        display: flex;
+        align-self: center;
+        gap: 10px;
+
+        button {
+          width: 100%;
+          padding: 5px;
+          background-color: white;
+          color: rgba(0, 0, 0, 0.6);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .selected {
+          color: rgba(0, 0, 0, 1);
+        }
+      }
+
+      &__field {
+        height: 0;
+        opacity: 0;
+
+        &_active {
+          height: 150px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &_response {
+    width: 33%;
+    flex: 1 1 auto;
+
+    &__header {
+      height: 40px;
+      padding: 10px 30px;
+    }
+
+    &__field {
+      height: calc(100% - 40px);
+      padding: 20px 0 0 30px;
+      overflow-y: auto;
+      text-align: left;
+
+      &::-webkit-scrollbar {
+        width: 15px;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.25);
+        color: #89a99d;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+
+  &_schema {
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    color: var(--color-punctuation);
+
+    &__schema-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: var(--color-schema-btn);
+      border-radius: 5px;
+      width: 100px;
+      align-self: end;
+      color: white;
+      border: none;
+      height: 30px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      &:hover {
+        transform: scale(1.08);
+        transition: 0.5s;
+      }
+    }
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 70px;
+      padding: 10px 20px;
+      background-color: white;
+      font-weight: 700;
+      font-size: var(--font-size-h2);
+      text-align: start;
+
+      &_h3 {
+        font-size: var(--font-size-h3);
+        font-weight: 600;
+      }
+      &_h4 {
+        font-size: var(--font-size-h4);
+        font-weight: 500;
+        gap: 10px;
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    &__breadCrumbs-btn {
+      display: flex;
+      color: var(--color-punctuation);
+      cursor: pointer;
+      border: transparent;
+      background-color: transparent;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__content {
+      height: calc(100% - 40px);
+      padding: 10px 20px;
+      background-color: white;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      color: var(--color-punctuation);
+      text-align: left;
+
+      &::-webkit-scrollbar {
+        width: 15px;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.25);
+        color: #89a99d;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    &__root-types-list {
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      font-weight: 700;
+      list-style: none;
+    }
+
+    &__root-types-list-title {
+      gap: 10px;
+      display: flex;
+    }
+
+    &__root-type {
+      color: var(--color-info);
+      display: flex;
+      gap: 5px;
+    }
+
+    &__root-type-btn {
+      color: var(--color-type);
+      cursor: pointer;
+      border: transparent;
+      background-color: transparent;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &__fields-item {
+      border: transparent;
+      background-color: transparent;
+      padding-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+
+      &__field-name-btn {
+        display: flex;
+        color: var(--color-info);
+        cursor: pointer;
+        border: transparent;
+        background-color: transparent;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &__field-name-btn-box {
+        display: flex;
+      }
+
+      &__argument-name {
+        color: var(--color-argument-name);
+        &__type-description {
+          padding: 5px;
+        }
+      }
+
+      &__argument-name-title__type-description,
+      &__type-name-title__type-description,
+      &__type-name-title__field-description {
+        display: flex;
+        padding: 5px 5px 5px 0;
+        gap: 5px;
+      }
+
+      &__type-name-btn,
+      &__argument-type-name-btn {
+        color: var(--color-type);
+        cursor: pointer;
+        border: transparent;
+        background-color: transparent;
+        text-align: start;
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &__type-description {
+          padding: 5px;
+        }
+      }
+
+      &__field-description {
+        color: var(--color-punctuation);
+      }
+    }
+
+    &__fields-item-detailed {
+      border: transparent;
+      background-color: transparent;
+      padding-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+
+      &__field-btns-box {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      &__argument-name-btn__type-detailed-description {
+        display: flex;
+        color: var(--color-info);
+        cursor: pointer;
+        border: transparent;
+        background-color: transparent;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      &__argument-type-name-btn__type-detailed-description {
+        display: flex;
+        color: var(--color-type);
+        cursor: pointer;
+        border: transparent;
+        background-color: transparent;
+        text-align: start;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    &__punctuation-marks {
+      color: var(--color-punctuation);
+    }
+  }
+}
+
+@media (max-width: 849px) {
+  .graphiql {
+    flex-direction: column;
+
+    &_editor {
+      width: 100%;
+    }
+
+    &_response {
+      width: 100%;
+    }
+
+    &_schema {
+      width: 100%;
+    }
+  }
+}
